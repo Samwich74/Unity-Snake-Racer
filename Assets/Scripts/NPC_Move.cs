@@ -20,6 +20,7 @@ public class NPC_Move : MonoBehaviour
     public bool OnGround = true;
     private float TempMaxSpeed;
 
+    public bool beingPulled;
 
     public GameObject Tail;
     public float tailUpForce;
@@ -48,9 +49,11 @@ public class NPC_Move : MonoBehaviour
         speed = (((float)S_Script.Size / (S_Script.MaxSize * 1.333f)) + .25f) * MaxSpeed;
 
         // Move the snake towards its current path target
-        Rig.AddForce(Vector3.Scale((CurrentPath.transform.position - transform.position).normalized * speed * Time.deltaTime, new Vector3(1, .3f, 1)));
-        Rig.AddForce(new Vector3(0, DownwardForce * Time.deltaTime, 0));
-
+        if (!beingPulled)
+        {
+            Rig.AddForce(Vector3.Scale((CurrentPath.transform.position - transform.position).normalized * speed * Time.deltaTime, new Vector3(1, .3f, 1)));
+            Rig.AddForce(new Vector3(0, DownwardForce * Time.deltaTime, 0));
+        }
         // check if grounded
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit ray, 5))
         {

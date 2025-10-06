@@ -15,7 +15,7 @@ public class ManageSnake : MonoBehaviour
     void Awake()
     {
         if (Script != null)
-            ChangeSize(6);
+            ChangeSize(10);
         else
             ChangeSize(15);
         
@@ -98,7 +98,10 @@ public class ManageSnake : MonoBehaviour
             {
                 Tail = Tail.transform.GetChild(0).gameObject;
             }
+            if (NPC_script.Tail != null)
+                NPC_script.Tail.tag = "Untagged";
             NPC_script.Tail = Tail;
+            NPC_script.Tail.tag = "Tail";
         }
     }
 }
