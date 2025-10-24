@@ -15,7 +15,7 @@ public class ManageSnake : MonoBehaviour
     void Awake()
     {
         if (Script != null)
-            ChangeSize(10);
+            ChangeSize(17);
         else
             ChangeSize(15);
         
